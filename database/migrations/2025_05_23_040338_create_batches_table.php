@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedInteger('amount_of_packs');
             $table->unsignedInteger('amount_of_units_per_pack');
             $table->unsignedInteger('total_units');
-            $table->unsignedInteger('available_units');
             $table->decimal('price_per_pack', 10, 2);
             $table->decimal('price_per_unit', 10, 2);
             $table->date('expiration_date')->nullable();

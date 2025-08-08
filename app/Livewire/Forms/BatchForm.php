@@ -17,7 +17,6 @@ class BatchForm extends Form
     public $amount_of_packs;
     public $amount_of_units_per_pack;
     public $total_units;
-    public $available_units;
     public $price_per_pack;
     public $price_per_unit;
     public $expiration_date;
@@ -98,7 +97,6 @@ class BatchForm extends Form
             'amount_of_packs' => $this->amount_of_packs,
             'amount_of_units_per_pack' => $this->amount_of_units_per_pack,
             'total_units' => $this->amount_of_packs * $this->amount_of_units_per_pack,
-            'available_units' => $this->amount_of_packs * $this->amount_of_units_per_pack,
             'price_per_pack' => $this->price_per_pack,
             'price_per_unit' => $this->price_per_pack / $this->amount_of_units_per_pack,
             'expiration_date' => $this->expiration_date,

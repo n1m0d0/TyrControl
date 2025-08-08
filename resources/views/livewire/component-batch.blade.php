@@ -119,10 +119,6 @@
                             </p>
 
                             {{ __('Total') }}: {{ $batch->total_units }}
-
-                            <p class="text-gray-500 dark:text-gray-400">
-                                {{ __('Available') }}: {{ $batch->available_units }}
-                            </p>
                         </td>
                         <td class="px-6 py-4 text-gray-900 dark:text-white">
                             {{ __('Pack') }}: {{ $batch->price_per_pack }}

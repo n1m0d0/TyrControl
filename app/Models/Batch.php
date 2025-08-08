@@ -19,7 +19,6 @@ class Batch extends Model
         'amount_of_packs',
         'amount_of_units_per_pack',
         'total_units',
-        'available_units',
         'price_per_pack',
         'price_per_unit',
         'expiration_date',
