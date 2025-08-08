@@ -371,5 +371,7 @@
     "Date": "Date",
     "The sale does not have an assigned customer.": "The sale does not have an assigned customer.",
     "Alert": "Alert",
-    "Inventory": "Inventory"
+    "Inventory": "Inventory",
+    "Payment method": "Payment method",
+    "Select a payment method": "Select a payment method"
 }

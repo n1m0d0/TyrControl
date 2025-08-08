@@ -371,5 +371,7 @@
     "Date": "Fecha",
     "The sale does not have an assigned customer.": "La venta no tiene cliente asignado.",
     "Alert": "Alerta",
-    "Inventory": "Inventario"
+    "Inventory": "Inventario",
+    "Payment method": "Método de pago",
+    "Select a payment method": "Seleccione un método de pago"
 }

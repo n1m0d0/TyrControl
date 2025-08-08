@@ -49,8 +49,12 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img src="{{ Storage::url($product->image) }}" alt="Current"
-                                class="w-24 h-24 rounded object-cover border">
+                            @if ($product->image)
+                                <img src="{{ Storage::url($product->image) }}" alt="Current"
+                                    class="w-24 h-24 rounded object-cover border">
+                            @else
+                                <flux:icon.photo variant="solid" class="size-24" />
+                            @endif
                         </th>
                         <td class="px-6 py-4 text-gray-900 dark:text-white">
                             {{ $product->name }}
@@ -125,12 +129,21 @@
                         <flux:icon.photo variant="solid" class="size-24" />
                     @endif
                 @else
-                    @if ($form->currentImage && $form->image == null)
-                        <img src="{{ Storage::url($form->currentImage) }}" alt="Current"
-                            class="w-32 h-32 rounded object-cover border">
+                    @if ($form->currentImage)
+                        @if ($form->currentImage && $form->image == null)
+                            <img src="{{ Storage::url($form->currentImage) }}" alt="Current"
+                                class="w-32 h-32 rounded object-cover border">
+                        @else
+                            <img src="{{ $form->image->temporaryUrl() }}" alt="Preview"
+                                class="w-32 h-32 rounded object-cover border">
+                        @endif
                     @else
-                        <img src="{{ $form->image->temporaryUrl() }}" alt="Preview"
-                            class="w-32 h-32 rounded object-cover border">
+                        @if ($form->image)
+                            <img src="{{ $form->image->temporaryUrl() }}" alt="Preview"
+                                class="w-32 h-32 rounded object-cover border">
+                        @else
+                            <flux:icon.photo variant="solid" class="size-24" />
+                        @endif
                     @endif
                 @endif
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PaymentMethodEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ class Sale extends Model
         'client_id',
         'sale_date',
         'total',
+        'payment_method',
     ];
 
     protected function casts(): array
@@ -25,6 +27,7 @@ class Sale extends Model
         return [
             'sale_date' => 'datetime',
             'total' => 'decimal:2',
+            'payment_method' => PaymentMethodEnum::class,
         ];
     }
 
@@ -44,7 +47,7 @@ class Sale extends Model
         );
     }
 
-    public function boxSession():BelongsTo
+    public function boxSession(): BelongsTo
     {
         return $this->belongsTo(BoxSession::class);
     }

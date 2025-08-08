@@ -306,6 +306,12 @@
                 <span class="info-label">{{ __('Date') }}:</span>
                 <span class="info-value">{{ $sale->sale_date->format('d/m/Y H:i:s') }}</span>
             </div>
+
+            <div class="info-row">
+                <span class="info-label">{{ __('Payment method') }}:</span>
+                <span class="info-value">{{ $sale->payment_method->label() }}</span>
+            </div>
+            
             @if ($sale->client)
                 <div class="info-row">
                     <span class="info-label">{{ __('Client') }}:</span>
@@ -344,8 +350,8 @@
                             <td class="text-center">
                                 <span class="badge">{{ $detail->quantity }}</span>
                             </td>
-                            <td class="text-right price">${{ number_format($detail->price, 2) }}</td>
-                            <td class="text-right price">${{ number_format($detail->quantity * $detail->price, 2) }}
+                            <td class="text-right price">Bs.{{ number_format($detail->price, 2) }}</td>
+                            <td class="text-right price">Bs.{{ number_format($detail->quantity * $detail->price, 2) }}
                             </td>
                         </tr>
                     @endforeach
@@ -357,7 +363,7 @@
         <div class="total-section">
             <div class="total-row">
                 <span>{{ __('Total') }}:</span>
-                <span class="total-amount">${{ number_format($sale->total, 2) }}</span>
+                <span class="total-amount">Bs.{{ number_format($sale->total, 2) }}</span>
             </div>
         </div>
     </div>

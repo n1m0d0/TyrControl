@@ -97,7 +97,7 @@
                     <span class="text-indigo-600 dark:text-indigo-300">{{ $client->document_identifier }}</span>
                 </div>
             @endif
-            
+
             <div class="relative overflow-x-auto rounded-xl shadow-sm mt-2">
                 <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
                     <thead class="text-xs uppercase bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
@@ -220,8 +220,34 @@
             <div class="flex gap-2">
                 <flux:spacer />
 
-                <flux:button wire:click='closeSaleAlert' variant="primary">{{ __('Cancel') }}</flux:button>
-                <flux:button wire:click='saveSale' variant="danger">{{ __('Save') }}</flux:button>
+                <flux:button wire:click='closeSaleAlert' variant="danger">{{ __('Cancel') }}</flux:button>
+                <flux:button wire:click='openConfirmed' variant="primary">{{ __('Accept') }}</flux:button>
+            </div>
+        </div>
+    </flux:modal>
+
+    <flux:modal name="sale-confirmed" class="md:w-120">
+        <div class="space-y-6">
+            <div>
+                <flux:heading size="lg">{{ __('Confirmation') }}</flux:heading>
+            </div>
+
+            <flux:label>{{ __('Payment method') }}</flux:label>
+
+            <flux:select class="mt-2" wire:model="payment_method">
+                <flux:select.option value="">{{ __('Select a payment method') }}</flux:select.option>
+                @foreach ($methods as $method)
+                    <flux:select.option value="{{ $method->value }}">{{ $method->label() }}</flux:select.option>
+                @endforeach
+            </flux:select>
+
+            <flux:error name="payment_method" />
+
+            <div class="flex gap-2">
+                <flux:spacer />
+
+                <flux:button wire:click='closeSaleAlert' variant="danger">{{ __('Cancel') }}</flux:button>
+                <flux:button wire:click='saveSale' variant="primary">{{ __('Save') }}</flux:button>
             </div>
         </div>
     </flux:modal>

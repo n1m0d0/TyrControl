@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Enums\BoxSessionStatusEnum;
 use App\Enums\DocumentTypeEnum;
 use App\Enums\MovementTypeEnum;
+use App\Enums\PaymentMethodEnum;
 use App\Livewire\Forms\ClientForm;
 use App\Models\BoxSession;
 use App\Models\Detail;
@@ -50,6 +51,10 @@ class ComponentSale extends Component
 
     public $box_session;
 
+    public $payment_method;
+
+    public $methods;
+
     public function mount()
     {
         $this->warehouse_id = null;
@@ -76,6 +81,8 @@ class ComponentSale extends Component
         $this->items = collect();
 
         $this->document_types = DocumentTypeEnum::cases();
+
+        $this->methods = PaymentMethodEnum::cases();
     }
 
     public function render()
@@ -186,8 +193,15 @@ class ComponentSale extends Component
         if (!$this->client) {
             Flux::modal('sale-alert')->show();
         } else {
-            $this->saveSale();
+            //$this->saveSale();
+            Flux::modal('sale-confirmed')->show();
         }
+    }
+
+    public function openConfirmed()
+    {
+        $this->closeSaleAlert();
+        Flux::modal('sale-confirmed')->show();
     }
 
     public function closeSaleAlert()
@@ -212,13 +226,16 @@ class ComponentSale extends Component
         $items = $this->items;
         $warehouse_id = $this->warehouse_id;
 
+        $method = $this->payment_method;
+
         try {
-            DB::transaction(function () use ($box_session_id, $client_id, $warehouse_id, $items) {
+            DB::transaction(function () use ($box_session_id, $client_id, $warehouse_id, $method, $items) {
                 $sale = Sale::create([
                     'box_session_id' => $box_session_id,
                     'client_id' => $client_id,
                     'sale_date' => now(),
-                    'total' => $items->sum('total')
+                    'total' => $items->sum('total'),
+                    'payment_method' => $method
                 ]);
 
                 foreach ($items as $item) {
@@ -269,6 +286,6 @@ class ComponentSale extends Component
                 ->push();
         }
 
-        Flux::modal('sale-alert')->close();
+        Flux::modal('sale-confirmed')->close();
     }
 }

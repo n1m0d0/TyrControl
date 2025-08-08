@@ -37,8 +37,12 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img src="{{ Storage::url($brand->logo) }}" alt="Current"
-                                class="w-24 h-24 rounded object-cover border">
+                            @if ($brand->logo)
+                                <img src="{{ Storage::url($brand->logo) }}" alt="Current"
+                                    class="w-24 h-24 rounded object-cover border">
+                            @else
+                                <flux:icon.photo variant="solid" class="size-24" />
+                            @endif
                         </th>
                         <td class="px-6 py-4">
                             {{ $brand->name }}
@@ -89,13 +93,23 @@
                         <flux:icon.photo variant="solid" class="size-24" />
                     @endif
                 @else
-                    @if ($form->currentLogo && $form->logo == null)
-                        <img src="{{ Storage::url($form->currentLogo) }}" alt="Current"
+                    @if ($form->currentLogo)
+                        @if ($form->currentLogo && $form->logo == null)
+                            <img src="{{ Storage::url($form->currentLogo) }}" alt="Current"
                                 class="w-32 h-32 rounded object-cover border">
+                        @else
+                            <img src="{{ $form->logo->temporaryUrl() }}" alt="Preview"
+                                class="w-32 h-32 rounded object-cover border">
+                        @endif
                     @else
-                        <img src="{{ $form->logo->temporaryUrl() }}" alt="Preview"
-                            class="w-32 h-32 rounded object-cover border">
+                        @if ($form->logo)
+                            <img src="{{ $form->logo->temporaryUrl() }}" alt="Preview"
+                                class="w-32 h-32 rounded object-cover border">
+                        @else
+                            <flux:icon.photo variant="solid" class="size-24" />
+                        @endif
                     @endif
+
                 @endif
             </div>
 

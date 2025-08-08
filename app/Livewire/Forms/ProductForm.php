@@ -49,7 +49,7 @@ class ProductForm extends Form
                 'regex:/^\d+(\.\d{1,2})?$/'
             ],
             'image' => [
-                $this->product ? 'nullable' : 'required',
+                'nullable',
                 'image',
                 'mimes:jpeg,png,jpg,gif',
                 'max:2048',
@@ -77,7 +77,9 @@ class ProductForm extends Form
     {
         $this->validate();
 
-        $this->image = $this->storeImage();
+        if ($this->image) {
+            $this->image = $this->storeImage();
+        }
 
         $data = $this->collectData();
         Product::create($data);
@@ -90,7 +92,10 @@ class ProductForm extends Form
         $this->validate();
 
         if ($this->image) {
-            Storage::disk('public')->delete($this->product->image);
+            if ($this->product->image) {
+                Storage::disk('public')->delete($this->product->image);
+            }
+
             $this->image = $this->storeImage();
         } else {
             $this->image = $this->currentImage;

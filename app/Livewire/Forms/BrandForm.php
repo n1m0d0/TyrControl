@@ -20,7 +20,7 @@ class BrandForm extends Form
         return [
             'name' => 'required|string|max:150',
             'logo' => [
-                $this->brand ? 'nullable' : 'required',
+                'nullable',
                 'image',
                 'mimes:jpeg,png,jpg,gif',
                 'max:2048',
@@ -40,7 +40,9 @@ class BrandForm extends Form
     {
         $this->validate();
 
-        $this->logo = $this->storeLogo();
+        if ($this->logo) {
+            $this->logo = $this->storeLogo();
+        }
 
         $data = $this->collectData();
         Brand::create($data);
@@ -53,7 +55,10 @@ class BrandForm extends Form
         $this->validate();
 
         if ($this->logo) {
-            Storage::disk('public')->delete($this->brand->logo);
+            if ($this->brand->logo) {
+                Storage::disk('public')->delete($this->brand->logo);
+            }
+
             $this->logo = $this->storeLogo();
         } else {
             $this->logo = $this->currentLogo;

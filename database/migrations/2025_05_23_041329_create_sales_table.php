@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('client_id')->nullable()->constrained()->cascadeOnDelete();
             $table->dateTime('sale_date');
             $table->decimal('total', 10, 2)->default(0);
+            $table->string('payment_method');
             $table->timestamps();
             $table->softDeletes();
         });

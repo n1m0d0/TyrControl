@@ -26,6 +26,9 @@
                         {{ __('Client') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        {{ __('Payment method') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         {{ __('Total') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -56,6 +59,10 @@
                                     S/N
                                 </div>
                             @endif
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ $sale->payment_method->label() }}
                         </td>
                         <td class="px-6 py-4">
                             {{ number_format($sale->total, 2) }} Bs.
