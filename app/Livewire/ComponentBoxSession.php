@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Enums\BoxSessionStatusEnum;
 use App\Enums\RoleEnum;
+use App\Exports\BoxSessionExport;
 use App\Livewire\Forms\BoxSessionForm;
 use App\Models\Box;
 use App\Models\BoxSession;
@@ -13,6 +14,7 @@ use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 use Usernotnull\Toast\Concerns\WireToast;
 
 class ComponentBoxSession extends Component
@@ -185,5 +187,10 @@ class ComponentBoxSession extends Component
         }
 
         $this->resetPage();
+    }
+
+    public function boxSessionExport($id)
+    {
+        return Excel::download(new BoxSessionExport($id), 'BoxSession.xlsx');
     }
 }

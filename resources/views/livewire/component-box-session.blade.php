@@ -216,6 +216,14 @@
                                         {{ __('Sales') }}
                                     </a>
                                 </li>
+                                @if ($boxSession->status == \App\Enums\BoxSessionStatusEnum::CLOSED)
+                                    <li>
+                                        <a wire:click='boxSessionExport({{ $boxSession->id }})'
+                                            class="font-medium text-orange-600 dark:text-orange-500 hover:underline cursor-pointer">
+                                            {{ __('Report') }}
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </td>
                     </tr>
