@@ -24,9 +24,11 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('Name') }}
                     </th>
+                    <!--
                     <th scope="col" class="px-6 py-3">
                         {{ __('Description') }}
                     </th>
+                -->
                     <th scope="col" class="px-6 py-3">
                         {{ __('Parent') }}
                     </th>
@@ -42,9 +44,11 @@
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $category->name }}
                         </th>
+                        <!--
                         <td class="px-6 py-4">
                             {{ $category->description }}
                         </td>
+                    -->
                         <td class="px-6 py-4">
                             @if ($category->parent)
                                 {{ $category->parent->name }}
@@ -90,8 +94,10 @@
             <flux:input wire:model='form.name' label="{{ __('Name') }}"
                 placeholder="{{ __('Example') }}: Clothes" />
 
+            <!--
             <flux:input wire:model='form.description' label="{{ __('Description') }}"
                 placeholder="{{ __('Example') }}: Women's clothing" />
+            -->
 
             <flux:label>{{ __('Parent') }}</flux:label>
 

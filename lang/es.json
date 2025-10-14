@@ -411,5 +411,16 @@
     "Create client": "Crear cliente",
     "Edit client": "Editar cliente",
     "Delete client": "Eliminar cliente",
-    "Opening box session": "Sesión de apertura de caja"
+    "Opening box session": "Sesión de apertura de caja",
+    "Choose file": "Elegir archivo",
+    "No file chosen": "Ningún archivo seleccionado",
+    "Change": "Cambiar",
+    "Remove": "Eliminar",
+    "Drop file here or click to upload": "Suelta el archivo aquí o haz clic para subir",
+    "Drop files here or click to upload": "Suelta los archivos aquí o haz clic para subir",
+    "Select a file": "Selecciona un archivo",
+    "Example": "Ejemplo",
+    "Trade name": "Nombre comercial",
+    "Therapeutic action": "Acción terapéutica",
+    "Indication": "Indicación"
 }

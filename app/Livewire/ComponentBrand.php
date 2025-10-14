@@ -25,7 +25,7 @@ class ComponentBrand extends Component
     {
         $brands = Brand::query()
             ->when($this->search, fn($query) => $query->where('name', 'like', '%' . $this->search . '%'))
-            ->orderBy('id', 'DESC')
+            ->orderBy('name', 'ASC')
             ->paginate(10);
 
         return view('livewire.component-brand', compact('brands'));

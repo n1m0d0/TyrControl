@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->string('name');
+            $table->string('trade_name');
             $table->text('description')->nullable();
-            $table->string('sku')->unique();
+            $table->text('indication')->nullable();
+            $table->string('sku')->unique()->nullable();
             $table->string('code')->unique()->nullable();
             $table->decimal('price', 10, 2);
             $table->string('image')->nullable();

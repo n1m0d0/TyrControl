@@ -34,14 +34,14 @@ class ComponentProduct extends Component
 
     public function render()
     {
-        $products = Product::with('brand')
+        $products = Product::with('brand', 'category')
             ->when($this->search, fn($query) => $query->whereAny([
                 'name',
                 'description',
                 'sku',
                 'code'
             ], 'like', '%' . $this->search . '%'))
-            ->orderBy('id', 'DESC')
+            ->orderBy('name', 'ASC')
             ->paginate(10);
 
         return view('livewire.component-product', compact('products'));

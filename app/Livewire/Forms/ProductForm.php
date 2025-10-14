@@ -15,7 +15,9 @@ class ProductForm extends Form
     public $category;
     public $brand;
     public $name;
+    public $trade_name;
     public $description;
+    public $indication;
     public $sku;
     public $code;
     public $price = 0.00;
@@ -29,9 +31,11 @@ class ProductForm extends Form
             'category' => 'required|exists:categories,id',
             'brand' => 'required|exists:brands,id',
             'name' => 'required|string|max:150',
+            'trade_name' => 'nullable|string|max:150',
             'description' => 'nullable|string|max:250',
+            'indication' => 'nullable|string|max:250',
             'sku' => [
-                'required',
+                'nullable',
                 'string',
                 'max:255',
                 Rule::unique('products', 'sku')->ignore($this->product?->id)
@@ -64,7 +68,9 @@ class ProductForm extends Form
         $this->category = $product->category_id;
         $this->brand = $product->brand_id;
         $this->name = $product->name;
+        $this->trade_name = $product->trade_name;
         $this->description = $product->description;
+        $this->indication = $product->indication;
         $this->sku = $product->sku;
         $this->code = $product->code;
         $this->price = $product->price;
@@ -116,7 +122,7 @@ class ProductForm extends Form
 
     public function resetForm()
     {
-        $this->reset(['category', 'brand', 'name', 'description', 'sku', 'code', 'price', 'image', 'minimum_stock', 'product']);
+        $this->reset(['category', 'brand', 'name', 'trade_name', 'description', 'indication', 'sku', 'code', 'price', 'image', 'minimum_stock', 'product']);
     }
 
     private function collectData()
@@ -124,8 +130,10 @@ class ProductForm extends Form
         return [
             'category_id' => $this->category,
             'brand_id' => $this->brand,
-            'name' => $this->name,
+            'name' => $this->name,            
+            'trade_name' => $this->trade_name,
             'description' => $this->description,
+            'indication' => $this->indication,
             'sku' => $this->sku,
             'code' => $this->code,
             'price' => $this->price,

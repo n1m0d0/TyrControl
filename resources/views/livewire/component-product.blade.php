@@ -40,6 +40,9 @@
                         {{ __('Minimum stock') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        {{ __('Category') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         {{ __('Options') }}
                     </th>
                 </tr>
@@ -57,8 +60,12 @@
                             @endif
                         </th>
                         <td class="px-6 py-4 text-gray-900 dark:text-white">
-                            {{ $product->name }}
-
+                            {{ $product->name }} 
+                            
+                            @if ($product->trade_name)
+                                <br>{{ $product->trade_name }}
+                            @endif
+                            
                             <p class="text-gray-500 dark:text-gray-400">
                                 {{ $product->description }}
                             </p>
@@ -82,6 +89,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $product->minimum_stock }}
+                        </td>
+                        <td>
+                            {{ $product->category->name }}
                         </td>
                         <td class="px-6 py-4">
                             <ul>
@@ -173,8 +183,16 @@
             <flux:input wire:model='form.name' label="{{ __('Name') }}"
                 placeholder="{{ __('Example') }}: My product" />
 
-            <flux:input wire:model='form.description' label="{{ __('Description') }}"
+            <flux:input wire:model='form.trade_name' label="{{ __('Trade name') }}"
+                placeholder="{{ __('Example') }}: My product" />
+
+            <flux:input wire:model='form.description' label="{{ __('Therapeutic action') }}"
                 placeholder="{{ __('Example') }}: product ingested orally" />
+
+            <!--
+            <flux:input wire:model='form.indication' label="{{ __('Indication') }}"
+                placeholder="{{ __('Example') }}: product ingested orally" />
+            -->
 
             <flux:input wire:model='form.sku' label="{{ __('SKU') }}"
                 placeholder="{{ __('Example') }}: AMOX-500-1" />

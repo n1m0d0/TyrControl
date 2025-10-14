@@ -4,6 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Models\Brand;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -18,7 +19,12 @@ class BrandForm extends Form
     public function rules()
     {
         return [
-            'name' => 'required|string|max:150',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('brands', 'name')->ignore($this->brand?->id)
+            ],
             'logo' => [
                 'nullable',
                 'image',
