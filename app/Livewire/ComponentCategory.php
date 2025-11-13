@@ -33,7 +33,7 @@ class ComponentCategory extends Component
                 'name',
                 'description'
             ], 'like', '%' . $this->search . '%'))
-            ->orderBy('id', 'DESC')
+            ->orderBy('name', 'ASC')
             ->paginate(10);
 
         return view('livewire.component-category', compact('categories'));

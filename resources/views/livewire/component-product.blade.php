@@ -59,12 +59,12 @@
                                 <flux:icon.photo variant="solid" class="size-24" />
                             @endif
                         </th>
-                        <td class="px-6 py-4 text-gray-900 dark:text-white">
-                            {{ $product->name }} 
-                            
+                        <td class="px-6 py-4 text-gray-900 dark:text-white">                            
                             @if ($product->trade_name)
-                                <br>{{ $product->trade_name }}
+                                <br><div class="uppercase">{{ $product->trade_name }}</div>
                             @endif
+
+                            {{ $product->name }} 
                             
                             <p class="text-gray-500 dark:text-gray-400">
                                 {{ $product->description }}
@@ -180,7 +180,7 @@
 
             <flux:error name="form.brand" />
 
-            <flux:input wire:model='form.name' label="{{ __('Name') }}"
+            <flux:input wire:model='form.name' label="{{ __('Generic name') }}"
                 placeholder="{{ __('Example') }}: My product" />
 
             <flux:input wire:model='form.trade_name' label="{{ __('Trade name') }}"

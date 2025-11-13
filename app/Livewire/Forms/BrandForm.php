@@ -78,7 +78,9 @@ class BrandForm extends Form
 
     public function delete()
     {
-        Storage::disk('public')->delete($this->brand->logo);
+        if ($this->brand->logo) {
+            Storage::disk('public')->delete($this->brand->logo);
+        }
 
         $this->brand->delete();
 
